@@ -1,5 +1,6 @@
 from selenium import webdriver
 import time
+
 class Facebook(object):
     def __init__(self):
         self.Login = ''
@@ -25,9 +26,10 @@ class Facebook(object):
     def setText(self, text):
         self.Text = text
 
+    def start(self, repeat=1, posts=None):
 
-    def start(self,repeat=1,posts=[]):
-
+        if posts is None:
+            posts = []
         if repeat != len(posts) and repeat != 1:
             raise ValueError("Repetition value is not equal to number of posts")
 
@@ -47,17 +49,15 @@ class Facebook(object):
             driver.find_element_by_css_selector('._1mf7').click()
 
         def PostImage(driver):
-
             element = driver.find_element_by_name('composer_photo[]')
-            element.send_keys("C:\\Users\\thiago.alves\\Desktop\\Hydrangeas.jpg")
-
-
+            element.send_keys("C:\\Users\\thiago.alves\\Desktop\\Desert.jpg")
 
         import getpass
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--disable-infobars")
         chrome_options.add_argument("start-maximized")
-        chrome_options.add_argument("user-data-dir=C:/Users/"+str(getpass.getuser())+"/AppData/Local/Google/Chrome/User Data/Default")
+        chrome_options.add_argument(
+            "user-data-dir=C:/Users/" + str(getpass.getuser()) + "/AppData/Local/Google/Chrome/User Data/Default")
 
         path = "C:\\Program Files\\ChromeDriver\\chromedriver.exe"
         driver = webdriver.Chrome(executable_path=path, chrome_options=chrome_options)
@@ -82,7 +82,6 @@ class Facebook(object):
                 self.Text = posts[i]
             PostAgain(driver)
             time.sleep(2)
-
 
     def stop(self):
         self.driver.close()

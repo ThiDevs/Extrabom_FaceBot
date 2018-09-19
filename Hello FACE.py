@@ -8,10 +8,6 @@ facebot.setLogin(login='[YOUR EMAIL FACEBOOK]',
 
 groupID = ['1889352911359628']  # ID DO GRUPO QUE DESEJA FAZER O POST
 facebot.setGrouopIds(groupID)
-
-Posts = ['Post com Imagem']
-
-
+Posts = ['Post com Imagem nº2']
 facebot.start(posts=Posts)
-
 facebot.stop()
